@@ -1,0 +1,61 @@
+# ==============================
+# LLM + LangChain
+# ==============================
+langchain
+langchain-core
+langchain-community
+langchain-mistralai
+mistralai
+
+# ==============================
+# RAG / Vector Database
+# ==============================
+chromadb
+langchain-chroma
+
+# ==============================
+# Embeddings
+# ==============================
+sentence-transformers
+
+# ==============================
+# PDF / Document Processing
+# ==============================
+pypdf
+unstructured
+beautifulsoup4
+lxml
+
+# ==============================
+# text processing
+tiktoken
+
+
+# ==============================
+# Environment Variables
+# ==============================
+python-dotenv
+
+# ==============================
+# Backend API
+# ==============================
+fastapi
+uvicorn
+
+# ==============================
+# Data Processing
+# ==============================
+numpy
+pandas
+
+# ==============================
+# UI
+# ==============================
+streamlit
+
+
+# ==============================
+# Utilities
+# ==============================
+tqdm
+requests

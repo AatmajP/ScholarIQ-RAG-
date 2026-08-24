@@ -1,0 +1,211 @@
+MODULE 1 
+Introduction and Data 
+Preprocessing 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+MODULE 1 
+Introduction And Data Preprocessing 
+SYLLABUS:  
+Introduction: Data-Definition, Types – Quantitative and 
+Qualitative Data, Nominal, Ordinal, Interval, Ratio, 
+data mining definition. Data pre-processing: Data 
+cleaning – Handling missing values and noisy data, Data 
+integration – Entity identification problem, Redundancy 
+and Correlation Analysis, Tuple duplication, Data 
+reduction- Principal Component Analysis, Attribute 
+subset selection, Parametric and Nonparametric methods, 
+Data 
+transformation 
+discretization.   
+1.1 Introduction   
+Data and Its Types - 
+Normalization 
+and 
+data 
+Data refers to the collection of facts, observations, or measurements that can be used 
+for analysis and decision-making. In any research or analysis, data plays a crucial role in 
+drawing conclusions and making predictions. Broadly, data is classified into Quantitative and 
+Qualitative types, each serving different purposes based on their nature and usage. 
+Types of Data: Quantitative and Qualitative 
+In statistics and data science, data is categorized into two main types: Quantitative 
+and Qualitative. Understanding these types helps in selecting appropriate analysis methods, 
+machine learning models, and visualization techniques. 
+Page 1 of 46 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+1. Qualitative Data (Categorical Data) 
+Qualitative data, also called categorical data, represents descriptive information that 
+cannot be measured numerically. It consists of labels, names, or categories that define 
+characteristics. 
+Examples: 
+• Gender: {Male, Female, Other} 
+• Blood Type: {A, B, AB, O} 
+• Eye Color: {Blue, Brown, Green} 
+• Nationality: {American, Indian, Chinese, French} 
+• Car Brands: {Toyota, Ford, BMW} 
+Key Characteristics: 
+No numerical meaning but can be represented using numbers (e.g., Male = 1, Female = 2). 
+Cannot perform arithmetic operations (e.g., adding two colors doesn't make sense). 
+Mode and sometimes median can be calculated. 
+2. Quantitative Data (Numerical Data) 
+Quantitative data represents measurable numerical values and can be used for mathematical 
+calculations. 
+Examples: 
+• Height & Weight: (e.g., 175 cm, 65 kg) 
+• Age: (e.g., 21 years, 45 years) 
+• Income: (e.g., $50,000, $100,000) 
+• Temperature: (e.g., 25°C, 30°C) 
+• Exam Scores: (e.g., 80, 90, 95) 
+Page 2 of 46 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+Key Characteristics: 
+Can perform arithmetic operations (addition, subtraction, multiplication, division). 
+Has meaningful numerical relationships (e.g., 100 kg is twice as heavy as 50 kg). 
+Mean, median, and standard deviation can be calculated. 
+Nominal data consists of labels or names without any particular order. For example, eye 
+color (brown, blue, green) or blood type (A, B, AB, O) represents nominal data because these 
+categories cannot be ranked or ordered in any meaningful way.  
+In contrast, ordinal data has a specific order or ranking but does not have equal intervals 
+between values. An example of ordinal data is customer satisfaction ratings, where responses 
+such as "Poor," "Average," "Good," and "Excellent" follow a specific order but do not have a 
+measurable difference between them. Similarly, educational qualifications such as “High 
+School,” “Bachelor’s,” “Master’s,” and “PhD” are ordinal since they have a meaningful order 
+but no fixed numerical difference. 
+Levels of Measurement 
+In data measurement, the NOIR framework represents four levels of data: Nominal, Ordinal, 
+Interval, and Ratio. Each level has distinct properties and applications. 
+1. Nominal Data (Categorical, No Order) 
+Nominal data consists of categories without any inherent order. It is qualitative and used for 
+labeling without numerical significance. Examples: 
+• Gender: {Male, Female, Other} 
+• Colors: {Red, Blue, Green} 
+• Blood Type: {A, B, AB, O} 
+• Nationality: {Indian, American, French} 
+• Vehicle Types: {Car, Bus, Bike} 
+Page 3 of 46 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+Key  Characteristics: 
+Categories are distinct but have no ranking. 
+Mathematical operations (e.g., addition, subtraction) don’t apply. 
+Mode (most frequent category) can be calculated. 
+2. Ordinal Data (Ordered Categories, No Equal Differences) 
+Ordinal data represents categories with a meaningful order, but the differences between 
+values are not equal or measurable. 
+Examples: 
+• Customer Satisfaction: {Very Unsatisfied, Unsatisfied, Neutral, Satisfied, Very 
+Satisfied} 
+• Education Level: {High School, Bachelor’s, Master’s, Ph.D.} 
+• Economic Status: {Low, Middle, High} 
+• Movie Ratings: {   ,       
+,          
+,             
+,                
+• Military Ranks: {Private, Sergeant, Captain, General} 
+Key Characteristics: 
+Ranking matters, but differences between ranks are not uniform. 
+Median (middle value) can be calculated. 
+Cannot perform arithmetic operations like addition/subtraction. 
+} 
+3. Interval Data (Ordered, Equal Differences, No True Zero) 
+Interval data consists of ordered values with equal intervals between them, but no true 
+zero point (zero does not mean "nothing"). 
+Examples: 
+Page 4 of 46 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+• Temperature (°C, °F): The difference between 20°C and 30°C is the same as between 
+30°C and 40°C, but 0°C does not mean "no temperature". 
+• IQ Scores: A person with an IQ of 140 is not necessarily "twice as intelligent" as 
+someone with an IQ of 70. 
+• SAT Scores: The difference between 1200 and 1300 is meaningful, but 0 does not 
+mean "no knowledge". 
+• Time of Day (on a 12-hour or 24-hour clock): 0:00 (midnight) does not mean "no 
+time"; it is just an arbitrary reference point. 
+Key Characteristics: 
+Equal intervals allow meaningful addition and subtraction. 
+No true zero, so ratios (e.g., "twice as much") don’t make sense. 
+Mean and standard deviation can be calculated. 
+4. Ratio Data (Ordered, Equal Differences, True Zero Exists) 
+Ratio data is like interval data, but with a true zero, meaning a value of zero represents the 
+absence of the quantity. 
+Examples: 
+• Height & Weight: A person who is 0 cm tall does not exist. Someone weighing 80 kg 
+is twice as heavy as someone weighing 40 kg. 
+• Income: $0 income means no money, and $100,000 is twice as much as $50,000. 
+• Kelvin Temperature: Unlike Celsius, 0K is absolute zero (absence of thermal 
+energy). 
+• Speed & Distance: 0 km/h means no motion, and 100 km is twice the distance of 50 
+km. 
+• Age: A 40-year-old person is twice as old as a 20-year-old. 
+Page 5 of 46 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+Key Characteristics: 
+Has a true zero, so meaningful ratios can be calculated. 
+All mathematical operations (addition, subtraction, multiplication, division) apply. 
+The most powerful data type in statistical analysis. 
+Summary Table: NOIR Data Levels 
+Can 
+Level 
+Ordered? 
+Nominal  No  
+Ordinal  Yes  
+Interval  Yes  
+Ratio  
+Type 
+Yes 
+Be 
+Equal Differences? 
+True 
+No  
+No  
+Yes  
+Yes 
+Description     
+Nominal Data 
+Categories with no 
+Zero? 
+No 
+No 
+No 
+Yes 
+Examples 
+Examples 
+Colors, Gender, Blood Type 
+Movie Ratings, Education Level 
+Temperature (°C, °F), IQ Scores 
+Height, Weight, Income, Kelvin 
+Temperature 
+Gender, Eye Color, Nationality 
+order 
+     
+Ordinal Data 
+Categories with a 
+meaningful order 
+Types of Quantitative Data: 
+Type 
+Description 
+Education Level (High School, Bachelor's,      
+Master's), Customer Satisfaction (Low, Medium, 
+High) 
+Examples 
+Discrete Data 
+Whole numbers; cannot have 
+decimals 
+Number of students in a class (30, 31, 32), 
+Number of cars in a parking lot (10, 20, 50) 
+Page 6 of 46 
+Data Mining and Machine Learning                
+22CSE61                                                                                                               
+Type 
+Continuous 
+Data 
+Description 
+Can take any value within a 
+range, including decimals 
+Definition of Data Mining 
+Examples 
+Height (175.5 cm), Weight (65.2 kg), 
+Temperature (36.8°C) 
