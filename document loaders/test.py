@@ -8,11 +8,22 @@
 from pathlib import Path
 
 from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import CharacterTextSplitter
+
+splitter = CharacterTextSplitter(
+    separator="",
+    chunk_size=10,
+    chunk_overlap=2
+)
 
 data = TextLoader(
 	str(Path(__file__).parent / "example.txt"),
 	encoding="utf-8",
 ).load()
-print(data[0].page_content  )
 
+splits = splitter.split_documents(data)
+print(splits[0].page_content)
 
+for i in splits:
+	print(i.page_content)
+	print("--------------------------------------------------")
