@@ -19,4 +19,13 @@ vectorstore = Chroma.from_documents(
     persist_directory="chroma_db"
     )
 
+result=vectorstore.similarity_search("Hello", k=1)
+for doc in result:
+    print(doc.page_content)
+    print(doc.metadata)
+retriever=vectorstore.as_retriever()
+docs=retriever.invoke("Hello")
+for doc in docs:
+    print(doc.page_content)
+    print(doc.metadata)
 
