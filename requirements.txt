@@ -17,6 +17,7 @@ langchain-chroma
 # Embeddings
 # ==============================
 sentence-transformers
+langchain-huggingface
 
 # ==============================
 # PDF / Document Processing

@@ -1,38 +1,73 @@
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 from langchain_mistralai import ChatMistralAI
-from langchain_community.document_loaders import TextLoader
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.prompts import ChatPromptTemplate
 from pathlib import Path
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
 
-# Load the document
-#data = TextLoader(
- #   str(Path(__file__).parent / "document loaders" / "example.txt"),
- #   encoding="utf-8",
-#).load()
+vectorstore = Chroma(persist_directory="chroma_db", 
+                     embedding_function=embedding_model)
+retriever = vectorstore.as_retriever(
+    search_type = "mmr",
+    search_kwargs = {
+        "k" : 4,
+        "fetch_k":10,
+        "lambda_mult" :0.5
+    }
+)
 
-# Load the PDF document
+llm = ChatMistralAI(model = "mistral-small-2603")
 
-
-
-
-
-# Create a prompt template for assigining role to the model
-template=ChatPromptTemplate.from_messages(
+#prompt template 
+prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are a ai that summarizes text."),
-        ("user", "{data}"),
+        (
+            "system",
+            """You are a helpful AI assistant.
+
+Use ONLY the provided context to answer the question.
+
+If the answer is not present in the context,
+say: "I could not find the answer in the document."
+"""
+        ),
+        (
+            "human",
+            """Context:
+{context}
+
+Question:
+{question}
+"""
+        )
     ]
-)   
+)
 
+print("Rag system created ")
 
+print("press 0 to exit ")
 
+while True:
+    query = input("You : ")
+    if query == "0":
+        break 
+    
+    docs = retriever.invoke(query)
 
+    context = "\n\n".join(
+        [doc.page_content for doc in docs]
+    )
+    
+    final_prompt = prompt.invoke({
+        "context" :context,
+        "question": query
+    })
+    
+    response = llm.invoke(final_prompt)
 
-
-# Invoke the model with the prompt
-model = ChatMistralAI(model='mistral-small-2603')
-
-
+    print(f"\n AI: {response.content}")
+    
